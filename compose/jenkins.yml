@@ -1,0 +1,23 @@
+version: "3"
+
+services:
+  jenkins:
+    container_name: jenkins
+    build:
+      context: ${PWD}/build
+      dockerfile: jenkins.Dockerfile
+    volumes:
+      - ${PWD}/volumes/jenkins_home:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /bin/docker:/usr/bin/docker
+      - /usr/local/bin/docker-compose:/usr/local/bin/docker-compose
+      - ${PWD}:/opt/compose
+
+    restart: always
+    privileged: true
+    user: root
+
+networks:
+  default:
+    external:
+      name: net1

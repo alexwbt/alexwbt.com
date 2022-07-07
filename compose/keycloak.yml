@@ -1,0 +1,27 @@
+version: "3"
+
+services:
+  keycloak:
+    container_name: keycloak
+    image: jboss/keycloak:latest
+    restart: always
+
+    environment:
+      PROXY_ADDRESS_FORWARDING: 'true'
+      KEYCLOAK_FRONTEND_URL: https://keycloak.alexwbt.com/auth/
+      # KEYCLOAK_USER: admin
+      # KEYCLOAK_PASSWORD: Keycloak173173173173
+      DB_VENDOR: postgres
+      DB_ADDR: database-1.ck44jygt4ca2.ap-southeast-1.rds.amazonaws.com
+      DB_PORT: 5432
+      DB_SCHEMA: keycloak
+      DB_DATABASE: keycloak
+      DB_USER: postgres
+      DB_PASSWORD: Database1173173173173
+
+      JDBC_PARAMS: enabledTLSProtocols=TLSv1.2
+
+networks:
+  default:
+    external:
+      name: net1

@@ -1,0 +1,11 @@
+
+*
+!.gitignore
+
+!*/
+
+jenkins_home/workspace/
+!jenkins_home/jobs/**/config.xml
+
+nginx/nginx_secrets/
+!nginx/user_conf.d/*

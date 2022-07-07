@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+  diep-server:
+    image: alexwbt/diep-server
+    container_name: diep-server
+    restart: always
+    environment:
+      PORT: 8080
+      UPDATE: 0.1
+      MIN_DATA: 'true'
+      START_GAME_PLAYER_COUNT: 3
+      AI_COUNT: 5
+      COUNTDOWN: 30
+
+networks:
+  default:
+    external:
+      name: net1

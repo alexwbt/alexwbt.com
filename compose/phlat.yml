@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+  phlat-server:
+    image: alexwbt/phlat-server
+    container_name: phlat-server
+    restart: always
+    environment:
+      PORT: 8080
+
+networks:
+  default:
+    external:
+      name: net1
