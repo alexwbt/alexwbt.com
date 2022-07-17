@@ -9,17 +9,28 @@ services:
     environment:
       PROXY_ADDRESS_FORWARDING: 'true'
       KEYCLOAK_FRONTEND_URL: https://keycloak.alexwbt.com/auth/
-      # KEYCLOAK_USER: admin
-      # KEYCLOAK_PASSWORD: Keycloak173173173173
       DB_VENDOR: postgres
-      DB_ADDR: database-1.ck44jygt4ca2.ap-southeast-1.rds.amazonaws.com
-      DB_PORT: 5432
+      DB_ADDR: ${KEYCLOAK_DB_ADDR}
+      DB_PORT: ${KEYCLOAK_DB_PORT}
       DB_SCHEMA: keycloak
       DB_DATABASE: keycloak
-      DB_USER: postgres
-      DB_PASSWORD: Database1173173173173
+      DB_USER: keycloak
+      DB_PASSWORD_FILE: /env/secret/db_password_file
 
       JDBC_PARAMS: enabledTLSProtocols=TLSv1.2
+
+      # using JDBC_PING for HA mode
+      # JGROUPS_DISCOVERY_EXTERNAL_IP: ${IP}
+      # JGROUPS_DISCOVERY_PROTOCOL: JDBC_PING
+      # KEYCLOAK_TCP_PORT: ${KEYCLOAK_TCP_PORT}
+    ports:
+      - ${KEYCLOAK_TCP_PORT}:${KEYCLOAK_TCP_PORT}
+
+    volumes:
+      - ${PWD}/env/secret/keycloak-db_password_file:/env/secret/db_password_file
+      - ${PWD}/volumes/keycloak/discovery:/opt/jboss/tools/cli/jgroups/discovery
+
+    entrypoint: /opt/jboss/tools/docker-entrypoint.sh
 
 networks:
   default:

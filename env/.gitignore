@@ -1,0 +1,6 @@
+
+*.env
+!template.env
+
+secret/*
+!secret/.gitkeep

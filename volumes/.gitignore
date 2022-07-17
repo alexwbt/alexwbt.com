@@ -9,3 +9,5 @@ jenkins_home/workspace/
 
 nginx/nginx_secrets/
 !nginx/user_conf.d/*
+
+!keycloak/discovery/*

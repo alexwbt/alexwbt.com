@@ -1,16 +1,16 @@
 #! /bin/env bash
 
 build() {
-  docker-compose -f compose/$1 build
+  docker-compose --env-file env/.env -f compose/$1 build
 }
 
 run() {
-	docker-compose -f compose/$1 pull
-	docker-compose -f compose/$1 up -d
+  docker-compose --env-file env/.env -f compose/$1 pull
+  docker-compose --env-file env/.env -f compose/$1 up -d
 }
 
 stop() {
-	docker-compose -f compose/$1 stop
+  docker-compose --env-file env/.env -f compose/$1 stop
 }
 
 restart() {
@@ -41,7 +41,7 @@ if [[ $2 == all || -z "$2" ]]
 then
   # loop all files in compose if the second
   # argument is 'all' or empty
-  for file in $(cd compose && ls)
+  for file in $(cd compose && ls *.yml)
   do
     $1 $file
   done
