@@ -47,6 +47,9 @@ LOGGER_TIMEZONE=Hongkong
 
 KEYCLOAK_REALM=devops
 KEYCLOAK_URL=https://keycloak.alexwbt.com/auth
+
+E_SCRIPT_DIR=/opt/compose
+COMPOSE_DIR_NAME=compose
 &quot; &gt; ./env/.env
 
 docker login -u ${USERNAME} -p ${PASSWORD}
