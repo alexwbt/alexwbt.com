@@ -39,7 +39,7 @@
       <command>cd server
 
 echo &quot;
-NODE_ENV=development
+NODE_ENV=production
 
 PORT=8080
 
