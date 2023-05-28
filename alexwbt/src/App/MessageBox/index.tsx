@@ -51,7 +51,7 @@ const MessageBox = () => {
   }, [messages, showMessages]);
 
   useEffect(() => {
-    const interval = setInterval(getMessages, 5000);
+    const interval = setInterval(getMessages, 10000);
     return () => clearInterval(interval);
   }, []);
 
