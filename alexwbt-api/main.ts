@@ -8,7 +8,7 @@ let data = "";
 const SIZE_LIMIT = 1000;
 
 app.use(cors());
-app.use(bodyParser.text({ defaultCharset: "text/plain" }));
+app.use(bodyParser.text());
 
 app.get("/message", (_, res) => {
   res.send(data);
