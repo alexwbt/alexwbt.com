@@ -1,11 +1,13 @@
-import express from "express";
 import bodyParser from "body-parser";
+import cors from "cors";
+import express from "express";
 
 const app = express();
 
 let data = "";
 const SIZE_LIMIT = 1000;
 
+app.use(cors());
 app.use(bodyParser.text());
 
 app.get("/message", (_, res) => {

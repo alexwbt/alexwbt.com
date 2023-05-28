@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { Grid } from "@mui/material";
-import { useEffect } from 'react';
+import { FC, useEffect } from 'react';
 import { SocialIcon } from 'react-social-icons';
 
 const ProfilePicture = styled.img`
@@ -10,13 +10,7 @@ const ProfilePicture = styled.img`
   border: 5px #F1F1F1 solid;
 `;
 
-const Row = styled.div`
-  margin-top: 30px;
-  text-align: center;
-`;
-
 const Name = styled.div`
-  text-align: center;
   font-size: 30px;
   font-weight: 100;
 `;
@@ -34,6 +28,8 @@ const Center = styled(Grid)`
   top: 15%;
   left: 50%;
   transform: translateX(-50%);
+  text-align: center;
+  min-width: 250px;
 `;
 
 const Icons = styled.div`
@@ -44,7 +40,7 @@ const Icons = styled.div`
   gap: 10px;
 `;
 
-const LinkTree = () => {
+const LinkTree: FC<{ children?: React.ReactNode }> = ({ children }) => {
   useEffect(() => {
     const vanta = (window as any).VANTA.FOG({
       el: "#animated-fog-background",
@@ -64,9 +60,7 @@ const LinkTree = () => {
   return (
     <Background id="animated-fog-background">
       <Center>
-        <Row>
-          <ProfilePicture src="profile_picture.png" />
-        </Row>
+        <ProfilePicture src="profile_picture.png" />
         <Name>alexwbt</Name>
         <Icons>
           <SocialIcon url="mailto:alexwbtg@gmail.com" />
@@ -76,6 +70,7 @@ const LinkTree = () => {
           <SocialIcon url="https://www.instagram.com/alexwbt" />
           <SocialIcon url="https://twitter.com/alexwbt" />
         </Icons>
+        {children}
       </Center>
     </Background>
   );

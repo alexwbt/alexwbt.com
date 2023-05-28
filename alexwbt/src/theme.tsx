@@ -5,7 +5,8 @@ export default createTheme({
     MuiCssBaseline: {
       styleOverrides: () => ({
         body: {
-          "background-color": "#F8F9FB",
+          backgroundColor: "#F8F9FB",
+          overflow: "hidden",
         },
       }),
     },
