@@ -1,28 +1,23 @@
 import bodyParser from "body-parser";
 import cors from "cors";
 import express from "express";
+import { PrismaClient } from '@prisma/client'
 
 const app = express();
 
-let data = "";
-const SIZE_LIMIT = 1000;
+const prisma = new PrismaClient();
 
 app.use(cors());
 app.use(bodyParser.text());
 
-app.get("/message", (_, res) => {
-  res.send(data);
-});
+app.post("/message", async (req, res) => {
+  await prisma.message.create({
+    data: {
+      message: `${req.body}`
+    }
+  });
 
-app.post("/message", (req, res) => {
-  const reqBody = `${req.body}`;
-
-  data = (
-    reqBody.length > SIZE_LIMIT
-      ? reqBody : data + reqBody
-  ).slice(-SIZE_LIMIT);
-
-  res.send(data);
+  res.sendStatus(200);
 });
 
 app.listen(3000);
