@@ -1,8 +1,7 @@
 import styled from "@emotion/styled";
-import MessageIcon from '@mui/icons-material/Message';
 import { Input } from "@mui/material";
 import axios from "axios";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 
 const Message = styled.div`
   margin-top: 50px;
@@ -26,37 +25,14 @@ const Message = styled.div`
 
 const MessageBox = () => {
   const [message, setMessage] = useState("");
-  const [messages, setMessages] = useState("");
-  const [showMessages, setShowMessages] = useState(false);
-  const textarea = useRef<HTMLTextAreaElement>(null);
 
   const postMessage = async () => {
     if (!message) return;
 
-    const res = await axios.post("https://api.alexwbt.com/message", `\n${message}`, {
+    await axios.post("https://api.alexwbt.com/message", `${message}`, {
       headers: { "Content-Type": "text/plain" }
     });
     setMessage("");
-    setMessages(res.data);
-  };
-
-  const getMessages = async () => {
-    const res = await axios.get("https://api.alexwbt.com/message");
-    setMessages(res.data);
-  };
-
-  useEffect(() => {
-    if (textarea.current)
-      textarea.current.scrollTop = textarea.current.scrollHeight;
-  }, [messages, showMessages]);
-
-  useEffect(() => {
-    const interval = setInterval(getMessages, 10000);
-    return () => clearInterval(interval);
-  }, []);
-
-  const toggleMessagesView = () => {
-    setShowMessages(show => !show);
   };
 
   return (
@@ -68,13 +44,6 @@ const MessageBox = () => {
         onKeyDown={e => e.key === "Enter" && postMessage()}
       />
       <div onClick={postMessage}>leave a message</div>
-
-      <textarea hidden={!showMessages} ref={textarea} readOnly value={messages} />
-
-      <MessageIcon onClick={() => {
-        toggleMessagesView();
-        if (!showMessages) getMessages();
-      }} />
     </Message>
   );
 };

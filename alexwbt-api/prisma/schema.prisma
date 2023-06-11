@@ -7,8 +7,10 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Message {
+model AnonMessage {
   id          BigInt   @id @default(autoincrement())
   message     String   @db.Text
   create_time DateTime @default(now())
+
+  @@map("anon_message")
 }

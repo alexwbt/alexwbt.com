@@ -1,5 +1,5 @@
 -- CreateTable
-CREATE TABLE `Message` (
+CREATE TABLE `annon_message` (
     `id` BIGINT NOT NULL AUTO_INCREMENT,
     `message` TEXT NOT NULL,
     `create_time` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),

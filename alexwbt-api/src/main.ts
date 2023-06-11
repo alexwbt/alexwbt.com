@@ -11,13 +11,13 @@ app.use(cors());
 app.use(bodyParser.text());
 
 app.post("/message", async (req, res) => {
-  await prisma.message.create({
+  await prisma.anonMessage.create({
     data: {
       message: `${req.body}`
     }
   });
 
-  res.sendStatus(200);
+  res.status(200).end();
 });
 
 app.listen(3000);
