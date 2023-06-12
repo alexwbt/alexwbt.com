@@ -29,7 +29,7 @@ const MessageBox = () => {
   const postMessage = async () => {
     if (!message) return;
 
-    await axios.post("https://api.alexwbt.com/message", `${message}`, {
+    axios.post("https://api.alexwbt.com/message", `${message}`, {
       headers: { "Content-Type": "text/plain" }
     });
     setMessage("");
