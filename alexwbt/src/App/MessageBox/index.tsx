@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Input } from "@mui/material";
+import { Button, Input } from "@mui/material";
 import axios from "axios";
 import { useState } from "react";
 
@@ -43,7 +43,8 @@ const MessageBox = () => {
         onChange={e => setMessage(e.target.value)}
         onKeyDown={e => e.key === "Enter" && postMessage()}
       />
-      <div onClick={postMessage}>leave a message</div>
+      <div>leave a message</div>
+      <Button onClick={postMessage}>Send</Button>
     </Message>
   );
 };
