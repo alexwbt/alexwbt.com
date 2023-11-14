@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { Grid } from "@mui/material";
-import { FC, useEffect } from 'react';
+import { FC } from 'react';
 import { SocialIcon } from 'react-social-icons';
 
 const ProfilePicture = styled.img`
@@ -41,24 +41,8 @@ const Icons = styled.div`
 `;
 
 const LinkTree: FC<{ children?: React.ReactNode }> = ({ children }) => {
-  useEffect(() => {
-    const vanta = (window as any).VANTA.FOG({
-      el: "#animated-fog-background",
-      mouseControls: true,
-      touchControls: true,
-      gyroControls: false,
-      minHeight: 200.00,
-      minWidth: 200.00,
-      highlightColor: "#d3dce6",
-      midtoneColor: "#d8dee4",
-      lowlightColor: "#e8eaed",
-      baseColor: "#f8f9fb",
-      speed: 1.5,
-    });
-    return () => vanta?.destroy();
-  }, []);
   return (
-    <Background id="animated-fog-background">
+    <Background>
       <Center>
         <ProfilePicture src="profile_picture.png" />
         <Name>alexwbt</Name>
