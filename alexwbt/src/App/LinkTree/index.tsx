@@ -3,6 +3,14 @@ import { Grid } from "@mui/material";
 import { FC } from 'react';
 import { SocialIcon } from 'react-social-icons';
 
+const Container = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+`;
+
 const ProfilePicture = styled.img`
   width: 100px;
   height: 100px;
@@ -42,10 +50,10 @@ const Icons = styled.div`
 
 const LinkTree: FC<{ children?: React.ReactNode }> = ({ children }) => {
   return (
-    <Background>
+    <Container>
       <Center>
         <ProfilePicture src="profile_picture.png" />
-        <Name>alexwbt</Name>
+        <Name>tessdfsf</Name>
         <Icons>
           <SocialIcon url="mailto:alexwbtg@gmail.com" />
           <SocialIcon url="https://github.com/alexwbt" />
@@ -56,7 +64,7 @@ const LinkTree: FC<{ children?: React.ReactNode }> = ({ children }) => {
         </Icons>
         {children}
       </Center>
-    </Background>
+    </Container>
   );
 };
 
