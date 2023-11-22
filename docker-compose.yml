@@ -11,15 +11,14 @@ services:
       dockerfile: ../_docker/dev/alexwbt-dev.Dockerfile
     environment:
       WATCHPACK_POLLING: true
-      WDS_SOCKET_PORT: 13000
+      WDS_SOCKET_PORT: ${ALEXWBT_DEV_PORT:-3000}
     volumes:
       - "vscode-server:/root/.vscode-server"
       - "./alexwbt/src:/app/src"
       - "./alexwbt/public:/app/public"
       - "./alexwbt/tsconfig.json:/app/tsconfig.json"
     ports:
-      - 13000:3000
-    command: [ "npm", "start" ]
+      - ${ALEXWBT_DEV_PORT:-3000}:3000
     restart: unless-stopped
     stdin_open: true
     tty: true
