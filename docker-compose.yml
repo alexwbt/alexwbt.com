@@ -1,4 +1,3 @@
-
 # docker compose for development environment
 
 name: alexwbt-com-dev
@@ -6,13 +5,25 @@ name: alexwbt-com-dev
 services:
   alexwbt:
     container_name: alexwbt-dev
-    image: dev/alexwbt
+    image: alexwbt-dev
     build:
-      context: alexwbt
-      dockerfile: ../_docker/dev/alexwbt.Dockerfile
+      context: ./alexwbt
+      dockerfile: ../_docker/dev/alexwbt-dev.Dockerfile
     environment:
-      CHOKIDAR_USEPOLLING: "true"
+      WATCHPACK_POLLING: true
+      WDS_SOCKET_PORT: 13000
+    volumes:
+      - "vscode-server:/root/.vscode-server"
+      - "./alexwbt/src:/app/src"
+      - "./alexwbt/public:/app/public"
+      - "./alexwbt/tsconfig.json:/app/tsconfig.json"
     ports:
-      - 3000:3000
-    command: ["npm", "start"]
+      - 13000:3000
+    command: [ "npm", "start" ]
     restart: unless-stopped
+    stdin_open: true
+    tty: true
+
+volumes:
+  vscode-server:
+    external: false

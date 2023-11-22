@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import { Button, Input } from "@mui/material";
 import axios from "axios";
 import { useState } from "react";
+import { ENV } from "../../lib/env";
 
 const Message = styled.div`
   margin-top: 50px;
@@ -29,8 +30,9 @@ const MessageBox = () => {
   const postMessage = async () => {
     if (!message) return;
 
-    axios.post("https://api.alexwbt.com/message", `${message}`, {
-      headers: { "Content-Type": "text/plain" }
+    axios.post("/message", `${message}`, {
+      baseURL: ENV.API_SERVER,
+      headers: { "Content-Type": "text/plain" },
     });
     setMessage("");
   };
