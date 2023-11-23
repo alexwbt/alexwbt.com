@@ -13,11 +13,11 @@ app.use(bodyParser.text());
 app.post("/message", async (req, res) => {
   await prisma.anonMessage.create({
     data: {
-      message: `${req.body}`
-    }
+      message: `${req.body}`,
+    },
   });
 
   res.status(200).end();
 });
 
-app.listen(3000);
+app.listen(3000, () => console.log("Listening on port: 3000"));

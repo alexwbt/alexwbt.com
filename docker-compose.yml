@@ -3,6 +3,7 @@
 name: alexwbt-com-dev
 
 services:
+
   alexwbt:
     container_name: alexwbt-dev
     image: alexwbt-dev
@@ -19,6 +20,24 @@ services:
       - "./alexwbt/tsconfig.json:/app/tsconfig.json"
     ports:
       - ${ALEXWBT_DEV_PORT:-3000}:3000
+    restart: unless-stopped
+    stdin_open: true
+    tty: true
+
+  alexwbt-api:
+    container_name: alexwbt-api-dev
+    image: alexwbt-api-dev
+    build:
+      context: ./alexwbt-api
+      dockerfile: ../_docker/dev/alexwbt-api-dev.Dockerfile
+    volumes:
+      - "vscode-server:/root/.vscode-server"
+      - "./alexwbt-api/src:/app/src"
+      - "./alexwbt-api/prisma:/app/prisma"
+      - "./alexwbt-api/nodemon.json:/app/nodemon.json"
+      - "./alexwbt-api/tsconfig.json:/app/tsconfig.json"
+    ports:
+      - ${ALEXWBT_API_DEV_PORT:-3001}:3000
     restart: unless-stopped
     stdin_open: true
     tty: true
