@@ -1,2 +1,5 @@
 
 .env
+
+_dev/alexwbt-config.js
+_dev/alexwbt-api.env

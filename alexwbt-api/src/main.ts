@@ -2,6 +2,9 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import express from "express";
 import { PrismaClient } from '@prisma/client'
+import { configDotenv } from "dotenv";
+
+configDotenv();
 
 const app = express();
 

@@ -18,6 +18,7 @@ services:
       - "./alexwbt/src:/app/src"
       - "./alexwbt/public:/app/public"
       - "./alexwbt/tsconfig.json:/app/tsconfig.json"
+      - "./_dev/alexwbt-config.js:/app/public/config.js"
     ports:
       - ${ALEXWBT_DEV_PORT:-3000}:3000
     restart: unless-stopped
@@ -36,6 +37,7 @@ services:
       - "./alexwbt-api/prisma:/app/prisma"
       - "./alexwbt-api/nodemon.json:/app/nodemon.json"
       - "./alexwbt-api/tsconfig.json:/app/tsconfig.json"
+      - "./_dev/alexwbt-api.env:/app/.env"
     ports:
       - ${ALEXWBT_API_DEV_PORT:-3001}:3000
     restart: unless-stopped
