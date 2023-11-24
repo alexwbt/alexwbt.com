@@ -1,18 +1,32 @@
+import { PrismaClient } from '@prisma/client';
 import bodyParser from "body-parser";
 import cors from "cors";
-import express from "express";
-import { PrismaClient } from '@prisma/client'
 import { configDotenv } from "dotenv";
+import express from "express";
+import { createServer } from "http";
+import { Server } from "socket.io";
 
 configDotenv();
 
 const app = express();
+const httpServer = createServer(app);
+const socketIO = new Server(httpServer, {
+  cors: {
+    origin: "*",
+  },
+});
 
-const prisma = new PrismaClient();
+socketIO.on("connection", socket => {
+  socket.on("message-bus", data => {
+    socketIO.emit("message-bus", data);
+  });
+});
+
 
 app.use(cors());
 app.use(bodyParser.text());
 
+const prisma = new PrismaClient();
 app.post("/message", async (req, res) => {
   await prisma.anonMessage.create({
     data: {
@@ -23,4 +37,4 @@ app.post("/message", async (req, res) => {
   res.status(200).end();
 });
 
-app.listen(3000, () => console.log("Listening on port: 3000"));
+httpServer.listen(3000, () => console.log("Listening on port: 3000"));

@@ -1,6 +1,4 @@
 import styled from "@emotion/styled";
-import { Grid } from "@mui/material";
-import { FC } from 'react';
 import { SocialIcon } from 'react-social-icons';
 
 const Container = styled.div`
@@ -22,7 +20,7 @@ const Container = styled.div`
     font-weight: 100;
   }
 
-  .center.MuiGrid-root {
+  .center {
     position: absolute;
     top: 15%;
     left: 50%;
@@ -40,10 +38,10 @@ const Container = styled.div`
   }
 `;
 
-const LinkTree: FC<{ children?: React.ReactNode }> = ({ children }) => {
+const LinkTree: React.FC<{ children?: React.ReactNode }> = ({ children }) => {
   return (
     <Container>
-      <Grid className="center">
+      <div className="center">
         <img className="profile-picture" alt="profile" src="profile_picture.png" />
         <div className="name">alexwbt</div>
         <div className="icons">
@@ -55,7 +53,7 @@ const LinkTree: FC<{ children?: React.ReactNode }> = ({ children }) => {
           <SocialIcon url="https://twitter.com/alexwbt" />
         </div>
         {children}
-      </Grid>
+      </div>
     </Container>
   );
 };

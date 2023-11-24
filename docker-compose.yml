@@ -18,6 +18,7 @@ services:
       - "./alexwbt/src:/app/src"
       - "./alexwbt/public:/app/public"
       - "./alexwbt/tsconfig.json:/app/tsconfig.json"
+      - "./alexwbt/craco.config.ts:/app/craco.config.ts"
       - "./_dev/alexwbt-config.js:/app/public/config.js"
     ports:
       - ${ALEXWBT_DEV_PORT:-3000}:3000
