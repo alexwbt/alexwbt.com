@@ -3,16 +3,17 @@ FROM node:18-alpine3.16 as BUILDER
 
 WORKDIR /app
 
-COPY package.json /app
-COPY package-lock.json /app
+COPY package.json .
+COPY package-lock.json .
 RUN npm ci
 
 RUN echo GENERATE_SOURCEMAP=false > .env
 
-COPY tsconfig.json /app
-COPY public /app/public
+COPY tsconfig.json .
+COPY public ./public
 
-COPY src /app/src
+COPY src ./src
+COPY craco.config.ts .
 
 RUN npm run build
 
